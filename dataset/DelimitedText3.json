@@ -1,0 +1,61 @@
+{
+	"name": "DelimitedText3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "population-2020-2029.csv",
+				"container": "abishek"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "LocID",
+				"type": "String"
+			},
+			{
+				"name": "Location",
+				"type": "String"
+			},
+			{
+				"name": "Time",
+				"type": "String"
+			},
+			{
+				"name": "AgeGrp",
+				"type": "String"
+			},
+			{
+				"name": "AgeGrpStart",
+				"type": "String"
+			},
+			{
+				"name": "AgeGrpSpan",
+				"type": "String"
+			},
+			{
+				"name": "PopMale",
+				"type": "String"
+			},
+			{
+				"name": "PopFemale",
+				"type": "String"
+			},
+			{
+				"name": "PopTotal",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

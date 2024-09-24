@@ -1,0 +1,25 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"description": "Sample Trigger",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Demo_Pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2024-09-24T09:33:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
