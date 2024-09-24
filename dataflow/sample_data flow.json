@@ -1,0 +1,88 @@
+{
+	"name": "sample_data flow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sample1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          LocID as string,",
+				"          Location as string,",
+				"          Time as string,",
+				"          AgeGrp as string,",
+				"          AgeGrpStart as string,",
+				"          AgeGrpSpan as string,",
+				"          PopMale as string,",
+				"          PopFemale as string,",
+				"          PopTotal as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sample1",
+				"source(output(",
+				"          LocID as string,",
+				"          Location as string,",
+				"          Time as string,",
+				"          AgeGrp as string,",
+				"          AgeGrpStart as string,",
+				"          AgeGrpSpan as string,",
+				"          PopMale as string,",
+				"          PopFemale as string,",
+				"          PopTotal as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"sample1, source1 join(sample1@Location == source1@Location,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          {1} as string,",
+				"          {2} as string,",
+				"          {3} as string,",
+				"          {4} as string,",
+				"          {5} as string,",
+				"          {6} as string,",
+				"          {7} as string,",
+				"          {8} as string,",
+				"          {9} as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink"
+			]
+		}
+	}
+}
